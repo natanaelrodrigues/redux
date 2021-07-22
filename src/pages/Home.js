@@ -1,9 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-function Home(props) {
+function Home() {
   let history = useHistory();
+
+  const dispatch = useDispatch();
+
+  const name= useSelector(state => state.usuario.name);
+  const cont= useSelector(state => state.usuario.contador);
 
   const handleButton = () => {
     setTimeout(() => {
@@ -12,20 +17,25 @@ function Home(props) {
   };
 
   const handleNovoUsuario = () => {
-    props.setName('Natanael Rodrigues')
+    dispatch({
+      type: 'SET_NAME',
+      payload:{name:'Natanael Roberto Rodrigues'}
+    });
   }
 
   const handleContador = () => {
-    props.setContador()
+    dispatch({
+      type: 'INCREMENT_CONTADOR'
+    });
   }
 
   return (
     <>
       <h4>Pagina home</h4>
 
-      NOME: {props.name}
+      NOME: {name}
       <br/><br/>
-      # Contagem: {props.contador}
+      # Contagem: {cont}
       <br/><br/>
       <br/><br/>
 
@@ -38,25 +48,4 @@ function Home(props) {
   );
 }
 
-const mapStateToProps = (state) =>{
-  return {
-    name: state.usuario.name,
-    contador: state.usuario.contador
-  };
-}
-
-const mapDispatchToProps = (dispatch) =>{
-  return {
-    setName: (newName) => dispatch({
-        type: 'SET_NAME',
-        payload: { name: newName }
-      }),
-    setContador: () => dispatch({
-      type: 'INCREMENT_CONTADOR'
-    })    
-  };
-};
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
