@@ -1,11 +1,8 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 
-
-
+function App() {
   return (
- x  <>
+    <>
       <h1>aqui começa</h1>
     </>
   );
