@@ -7,7 +7,7 @@ import Categoria from "./pages/Categoria";
 import Login from "./pages/Login";
 import Produto from "./pages/Produto";
 
-const isLogged = true;  
+const isLogged = false;  
 
 const PrivateRoute = ({ children, ...rest }) => {
   return (
